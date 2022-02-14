@@ -13,11 +13,11 @@ contract Creature is ERC721Tradable {
         ERC721Tradable("Creature", "OSC", _proxyRegistryAddress)
     {}
 
-    function baseTokenURI() override public pure returns (string memory) {
-        return "https://creatures-api.opensea.io/api/creature/";
+    function baseTokenURI() public pure override returns (string memory) {
+        return "http://18.208.216.46/nft/";
     }
 
     function contractURI() public pure returns (string memory) {
-        return "https://creatures-api.opensea.io/contract/opensea-creatures";
+        return "http://18.208.216.46/contract";
     }
 }

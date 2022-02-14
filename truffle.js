@@ -25,7 +25,7 @@ const mainnetNodeUrl = isInfura
 module.exports = {
   networks: {
     development: {
-      host: "localhost",
+      host: "172.27.64.1",
       port: 7545,
       gas: 5000000,
       network_id: "*", // Match any network id
@@ -34,7 +34,7 @@ module.exports = {
       provider: function () {
         return new HDWalletProvider(MNEMONIC, rinkebyNodeUrl);
       },
-      gas: 5000000,
+      gas: 2500000,
       network_id: 4,
     },
     live: {

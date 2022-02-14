@@ -76,13 +76,15 @@ async function main() {
     );
 
     // Creatures issued directly to the owner.
+    const mintAddress = "0x76e7180A22a771267D3bb1d2125A036dDd8344D9"
     for (var i = 0; i < NUM_CREATURES; i++) {
       const result = await factoryContract.methods
-        .mint(DEFAULT_OPTION_ID, OWNER_ADDRESS)
+        .mint(DEFAULT_OPTION_ID, mintAddress)
         .send({ from: OWNER_ADDRESS });
       console.log("Minted creature. Transaction: " + result.transactionHash);
     }
 
+    /*
     // Lootboxes issued directly to the owner.
     for (var i = 0; i < NUM_LOOTBOXES; i++) {
       const result = await factoryContract.methods
@@ -90,6 +92,7 @@ async function main() {
         .send({ from: OWNER_ADDRESS });
       console.log("Minted lootbox. Transaction: " + result.transactionHash);
     }
+    */
   } else if (NFT_CONTRACT_ADDRESS) {
     const nftContract = new web3Instance.eth.Contract(
       NFT_ABI,
