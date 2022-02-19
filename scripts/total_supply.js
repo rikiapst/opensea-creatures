@@ -1,5 +1,6 @@
 const HDWalletProvider = require("truffle-hdwallet-provider");
 const web3 = require("web3");
+const { setupLoader } = require('@openzeppelin/contract-loader');
 const MNEMONIC = process.env.MNEMONIC;
 const NODE_API_KEY = process.env.INFURA_KEY || process.env.ALCHEMY_KEY;
 const isInfura = !!process.env.INFURA_KEY;
@@ -61,8 +62,17 @@ async function main() {
   );
 
 
-  nftContract.methods.totalSupply().call().then(result => { console.log("result is ", result) });
-  nftContract.methods.baseTokenURI().call().then(console.log);
+
+  const loader = setupLoader({ provider: web3Instance }).web3;
+  console.log("this is loader", loader)
+  // Set up a web3 contract, representing a deployed ERC20, using the contract loader
+  const token = loader.fromArtifact('ERC721', NFT_CONTRACT_ADDRESS);
+  console.log("this is token", token)
+  const totalSupply = await token.methods.name().call();
+  console.log(totalSupply)
+
+  // await nftContract.methods.totalSupply().call().then(result => { console.log("result is ", result) });
+  // await nftContract.methods.baseTokenURI().call().then(console.log);
 
 }
 
