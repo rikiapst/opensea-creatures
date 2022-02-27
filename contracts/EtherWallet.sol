@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.8.11;
+pragma solidity ^0.8.11;
 
 contract etherWallet {
     //Creating a state variable for the owner
@@ -98,4 +98,8 @@ contract etherWallet {
     function getBalance() external view returns (uint256) {
         return address(this).balance;
     }
+
+    //  function getBalanceOwner()  external view returns (uint) {
+    //     return address(this).balance;
+    // }
 }
