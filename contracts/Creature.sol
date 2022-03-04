@@ -21,6 +21,7 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2{
     uint32 callbackGasLimit = 100000;
     uint16 requestConfirmations = 3;
     uint32 numWords =  2;
+    uint32 public nftSold = 0;
 
     uint256[] public s_randomWords;
     uint256 public s_requestId;
@@ -48,7 +49,7 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2{
 
     function requestRandomWords() external {
     // Will revert if subscription is not set and funded.
-    require(msg.sender == s_owner);
+   require(msg.sender == s_owner, "Invalid: only owner");
     s_requestId = COORDINATOR.requestRandomWords(
       keyHash,
       s_subscriptionId,
@@ -65,8 +66,21 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2{
     s_randomWords = randomWords;
   }
 
-//   modifier onlyOwner() {
-//     require(msg.sender == s_owner);
-//     _;
-//   }
+
+   function transferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) public override {
+     ERC721Tradable.transferFrom(from, to, tokenId);
+
+     if(from == s_owner){
+       nftSold++;
+     }
+    }
+
+    function pickWinner() public view returns(uint256){
+      return s_randomWords[0] % nftSold + 1;
+    }
+
 }

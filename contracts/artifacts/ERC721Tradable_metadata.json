@@ -6,38 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_proxyRegistryAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint64",
-						"name": "subscriptionId",
-						"type": "uint64"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "have",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "want",
-						"type": "address"
-					}
-				],
-				"name": "OnlyCoordinatorCanFulfill",
-				"type": "error"
-			},
-			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -220,19 +188,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "contractURI",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -387,19 +342,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "nftSold",
-				"outputs": [
-					{
-						"internalType": "uint32",
-						"name": "",
-						"type": "uint32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -432,92 +374,9 @@
 			},
 			{
 				"inputs": [],
-				"name": "pickWinner",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "requestId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256[]",
-						"name": "randomWords",
-						"type": "uint256[]"
-					}
-				],
-				"name": "rawFulfillRandomWords",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "renounceOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "requestRandomWords",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "returnOne",
-				"outputs": [
-					{
-						"internalType": "uint8",
-						"name": "",
-						"type": "uint8"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "s_randomWords",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "s_requestId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -745,7 +604,7 @@
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
 			},
-			"title": "Creature Creature - a contract for my non-fungible creatures.",
+			"title": "ERC721Tradable ERC721Tradable - ERC721 contract that whitelists a trading address, and has minting functionality.",
 			"version": 1
 		},
 		"userdoc": {
@@ -760,7 +619,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Creature.sol": "Creature"
+			"contracts/ERC721Tradable.sol": "ERC721Tradable"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -774,30 +633,6 @@
 		"remappings": []
 	},
 	"sources": {
-		"@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol": {
-			"keccak256": "0xec8b7e3032e887dd0732d2a5f8552ddce64a99a81b0008ef0bcf6cad68a535fc",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://362303461c62155063196629bf0f26377e024f303ce4ec0258ae67ce4cd1b884",
-				"dweb:/ipfs/QmNyBvuwApTXTL1Ew7EjGURbyWRiYuRZxWFGY1qjZEAEK2"
-			]
-		},
-		"@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol": {
-			"keccak256": "0xc7d7cd730d36825485ef4107d93c3ff18b9f3a5a00ea3d5988ba9a0bd70b10c5",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://8cb1064885ecbcd9c3adba779e190cb4a538e5d4d15aeccb67d3376bdffc94bd",
-				"dweb:/ipfs/QmcQHK6ewve7tFi4XXK65JthQg4kQzApQikWcURJjGt4iQ"
-			]
-		},
-		"@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol": {
-			"keccak256": "0xcb29ee50ee2b05441e4deebf8b4756a0feec4f5497e36b6a1ca320f7ce561802",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://87b4f2ac9fe4e83334c0cc7b070989f133647f20c2b2e8f2224e10d37bebc6df",
-				"dweb:/ipfs/QmYS2z7xmTArVpxiNM8Czj1qKL56HMw61Lzdjto9m3B5PL"
-			]
-		},
 		"@openzeppelin/contracts/access/Ownable.sol": {
 			"keccak256": "0xa1b27b3f44ff825974e5268e8f63ad3b03add5b464880d860fbb8cae043e17f7",
 			"license": "MIT",
@@ -892,14 +727,6 @@
 			"urls": [
 				"bzz-raw://063db5d664d3d5bae10d0056c9d00339265229532d06b53d5f2e91778b2e428d",
 				"dweb:/ipfs/QmWM92rU59t6BcZSj4w6ikoPL32R9hyTMb9Msg5X8vvu1s"
-			]
-		},
-		"contracts/Creature.sol": {
-			"keccak256": "0x12db49a8b973d4596269a790760be8e1bc5d240f5b012ad821a6e859bdfd7f19",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://246bc5d38f552c3d2d8882c7f334aa2a2a1b06dd2e6d6738769c60c65e6af59e",
-				"dweb:/ipfs/QmSVmi9NXyQuy4Dafd71ML95eAg4CSGpzwuMkyZR5b1WGe"
 			]
 		},
 		"contracts/ERC721Tradable.sol": {

@@ -38,7 +38,7 @@ abstract contract ERC721Tradable is
      * We track the nextTokenId instead of the currentTokenId to save users on gas costs.
      * Read more about it here: https://shiny.mirror.xyz/OUampBbIz9ebEicfGnQf5At_ReMHlZy0tB4glb9xQ0E
      */
-    Counters.Counter private _nextTokenId;
+    Counters.Counter internal _nextTokenId;
     address proxyRegistryAddress;
 
     constructor(
@@ -107,5 +107,13 @@ abstract contract ERC721Tradable is
      */
     function _msgSender() internal view override returns (address sender) {
         return ContextMixin.msgSender();
+    }
+
+      function transferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) public virtual override {
+     ERC721.transferFrom(from, to, tokenId);
     }
 }
