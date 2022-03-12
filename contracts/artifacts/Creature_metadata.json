@@ -895,11 +895,11 @@
 			]
 		},
 		"contracts/Creature.sol": {
-			"keccak256": "0x12db49a8b973d4596269a790760be8e1bc5d240f5b012ad821a6e859bdfd7f19",
+			"keccak256": "0xd2af0ad940de4a530504823fd00591100f39b4d5ad73f5d50330d1c044ae5f6b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://246bc5d38f552c3d2d8882c7f334aa2a2a1b06dd2e6d6738769c60c65e6af59e",
-				"dweb:/ipfs/QmSVmi9NXyQuy4Dafd71ML95eAg4CSGpzwuMkyZR5b1WGe"
+				"bzz-raw://1c0379eb23aa2144365c6d20708495faac03478adaef79b278b955f802511f9c",
+				"dweb:/ipfs/QmNX4FB7cRJuh7Uv7nLDwUtVSaFUf59ziyyBN1SUiu665i"
 			]
 		},
 		"contracts/ERC721Tradable.sol": {

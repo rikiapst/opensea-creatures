@@ -64,6 +64,8 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2{
     uint256[] memory randomWords
   ) internal override {
     s_randomWords = randomWords;
+
+    pickWinner();
   }
 
 
@@ -76,8 +78,12 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2{
 
      if(from == s_owner){
        nftSold++;
+
+       if (this.totalSupply() - nftSold == 0){
+         this.requestRandomWords();
+       }
      }
-    }
+   }
 
     function pickWinner() public view returns(uint256){
       return s_randomWords[0] % nftSold + 1;
