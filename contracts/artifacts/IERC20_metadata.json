@@ -6,38 +6,28 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_proxyRegistryAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_nftAddress",
-						"type": "address"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
 				"anonymous": false,
 				"inputs": [
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "previousOwner",
+						"name": "owner",
 						"type": "address"
 					},
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "newOwner",
+						"name": "spender",
 						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
 					}
 				],
-				"name": "OwnershipTransferred",
+				"name": "Approval",
 				"type": "event"
 			},
 			{
@@ -56,9 +46,9 @@
 						"type": "address"
 					},
 					{
-						"indexed": true,
+						"indexed": false,
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "value",
 						"type": "uint256"
 					}
 				],
@@ -66,13 +56,24 @@
 				"type": "event"
 			},
 			{
-				"inputs": [],
-				"name": "baseURI",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					}
+				],
+				"name": "allowance",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "uint256",
 						"name": "",
-						"type": "string"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -81,12 +82,17 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
-						"name": "_optionId",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
-				"name": "canMint",
+				"name": "approve",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -94,93 +100,18 @@
 						"type": "bool"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_owner",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_operator",
-						"type": "address"
-					}
-				],
-				"name": "isApprovedForAll",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "lootBoxNftAddress",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_optionId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "_toAddress",
-						"type": "address"
-					}
-				],
-				"name": "mint",
-				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "name",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "nftAddress",
-				"outputs": [
+				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "account",
 						"type": "address"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "numOptions",
+				"name": "balanceOf",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -193,12 +124,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "owner",
+				"name": "totalSupply",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "uint256",
 						"name": "",
-						"type": "address"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -207,45 +138,17 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
-				"name": "ownerOf",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "_owner",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "proxyRegistryAddress",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "renounceOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "supportsFactoryInterface",
+				"name": "transfer",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -253,137 +156,53 @@
 						"type": "bool"
 					}
 				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "symbol",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_optionId",
-						"type": "uint256"
-					}
-				],
-				"name": "tokenURI",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "from",
 						"type": "address"
 					},
 					{
 						"internalType": "address",
-						"name": "_to",
+						"name": "to",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_tokenId",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
 				"name": "transferFrom",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
+				"outputs": [
 					{
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
-				"name": "transferOwnership",
-				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {
-				"canMint(uint256)": {
-					"details": "Returns whether the option ID can be minted. Can return false if the developer wishes to restrict a total supply per option ID (or overall)."
-				},
-				"mint(uint256,address)": {
-					"details": "Mints asset(s) in accordance to a specific address with a particular \"option\". This should be callable only by the contract owner or the owner's Wyvern Proxy (later universal login will solve this). Options should also be delineated 0 - (numOptions() - 1) for convenient indexing.",
-					"params": {
-						"_optionId": "the option id",
-						"_toAddress": "address of the future owner of the asset(s)"
-					}
-				},
-				"owner()": {
-					"details": "Returns the address of the current owner."
-				},
-				"renounceOwnership()": {
-					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
-				},
-				"tokenURI(uint256)": {
-					"details": "Returns a URL specifying some metadata about the option. This metadata can be of the same structure as the ERC721 metadata."
-				},
-				"transferOwnership(address)": {
-					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
-				}
-			},
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {
-				"isApprovedForAll(address,address)": {
-					"notice": "Hack to get things to work automatically on OpenSea. Use isApprovedForAll so the frontend doesn't have to worry about different method names."
-				},
-				"name()": {
-					"notice": "Returns the name of this factory."
-				},
-				"numOptions()": {
-					"notice": "Number of options the factory supports."
-				},
-				"ownerOf(uint256)": {
-					"notice": "Hack to get things to work automatically on OpenSea. Use isApprovedForAll so the frontend doesn't have to worry about different method names."
-				},
-				"supportsFactoryInterface()": {
-					"notice": "Indicates that this is a factory contract. Ideally would use EIP 165 supportsInterface()"
-				},
-				"symbol()": {
-					"notice": "Returns the symbol for this factory."
-				},
-				"transferFrom(address,address,uint256)": {
-					"notice": "Hack to get things to work automatically on OpenSea. Use transferFrom so the frontend doesn't have to worry about different method names."
-				}
-			},
+			"methods": {},
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/CreatureFactory.sol": "CreatureFactory"
+			"contracts/Creature.sol": "IERC20"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -518,27 +337,11 @@
 			]
 		},
 		"contracts/Creature.sol": {
-			"keccak256": "0x27cc2b6d044ad86743b0ec4ea2299dfa5f27b2a368dc8f84120b7067b23a45a2",
+			"keccak256": "0xe1b1460ed3835369f93f65081994ae75ed8a8490567524c4eccfc6a0d03fe1fc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0715bb4cfe1d746cf47464843ed72361791514447dce1426e48dc9e7c155ca5e",
-				"dweb:/ipfs/QmRgKFpfEeiQv4Fdskhrc3NnyqJfP4hig7KiajiHkepakL"
-			]
-		},
-		"contracts/CreatureFactory.sol": {
-			"keccak256": "0x3bc66be011ae16f7409459e83b9f3f29d2f2960df6a69860b56ba87f54f94e3e",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://e47c2ebd34d44289dabd8f53ecb1ea7c6c0f1e62df79942834b9d907f0fdc691",
-				"dweb:/ipfs/QmU3d7WZqbQC1y1dteKgU7uH3VT5SWUzRc7wMKhweP6Cg2"
-			]
-		},
-		"contracts/CreatureLootBox.sol": {
-			"keccak256": "0xdfb47438d1d19788fe8015cc5f7ca2419a7c23b4b4dda408ad607524db9c22fd",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://98dc0aa4da08a06a961022bcccb650ee1d3fa5a3bf4d1684b3500d5ce60e3a49",
-				"dweb:/ipfs/QmZrgQy6iTvYp7ECmmFtPRFJ7z5p1KZuW6AJfMYxznukAA"
+				"bzz-raw://934c887b10e4c2c296f70dd37771228ab182c92868fc6935e0e40b0f279425ee",
+				"dweb:/ipfs/QmTcFLnqkccwVFUxnJiGjVxPs2aFSPBiyKSX2qgfvzJzec"
 			]
 		},
 		"contracts/ERC721Tradable.sol": {
@@ -547,14 +350,6 @@
 			"urls": [
 				"bzz-raw://5edaa345c97bbde975636ec261114138acd87086baf600ec3a8177b0536f7de6",
 				"dweb:/ipfs/QmfMXgheriyvxrLzyNjQr1LnWk634rtYdq5MxNGCzABMiQ"
-			]
-		},
-		"contracts/IFactoryERC721.sol": {
-			"keccak256": "0x9012def5117974d07b70f845a71a2f3886e0c65a827768a231ee3662121333f7",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://34affb89c3b4a391a5f55f7f28e6dbbf07967aa6bcc42fe3b56ad3c1582b3d2b",
-				"dweb:/ipfs/QmQAmmwUqMPtx56sDuuu3Jc1QxCLszdPAgi8yiQJQ5VMne"
 			]
 		},
 		"contracts/common/meta-transactions/ContentMixin.sol": {

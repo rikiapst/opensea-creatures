@@ -34,7 +34,7 @@ contract CreatureFactory is FactoryERC721, Ownable {
     uint256 SINGLE_CREATURE_OPTION = 0;
     uint256 MULTIPLE_CREATURE_OPTION = 1;
     uint256 LOOTBOX_OPTION = 2;
-    uint256 NUM_CREATURES_IN_MULTIPLE_CREATURE_OPTION = 4;
+    uint256 NUM_CREATURES_IN_MULTIPLE_CREATURE_OPTION = 5;
 
     constructor(address _proxyRegistryAddress, address _nftAddress) {
         proxyRegistryAddress = _proxyRegistryAddress;
