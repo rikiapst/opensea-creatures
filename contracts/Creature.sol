@@ -47,15 +47,24 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
     address s_owner;
     address weth = 0xc778417E063141139Fce010982780140Aa0cD5Ab;
 
+    uint winner;
+    address maintenance = 0x76e7180A22a771267D3bb1d2125A036dDd8344D9;
+    address charity;
+
+    uint public lotteryId;
+    mapping (uint => address) public lotteryHistory;
+
     constructor(address _proxyRegistryAddress, uint64 subscriptionId)
         ERC721Tradable("Creature", "OSC", _proxyRegistryAddress)
         VRFConsumerBaseV2(vrfCoordinator)
     {
         COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
         LINKTOKEN = LinkTokenInterface(link);
-        s_owner = msg.sender;
+        s_owner = payable(msg.sender);
         s_subscriptionId = subscriptionId;
         WETH = IERC20(weth);
+
+        lotteryId = 1;
     }
 
     function wethBalance() public view returns(uint){
@@ -80,7 +89,6 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
 
     function requestRandomWords() internal {
         // Will revert if subscription is not set and funded.
-       //require(msg.sender == s_owner, "Invalid: only owner");
         s_requestId = COORDINATOR.requestRandomWords(
             keyHash,
             s_subscriptionId,
@@ -115,7 +123,37 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
         }
     }
 
-    function pickWinner() public view returns (uint256) {
-        return (s_randomWords[0] % nftSold) + 1;
+    function pickWinner() public payable returns (uint256) {
+       winner = (s_randomWords[0] % nftSold + 1000) + 1;
+       payOut();
+        return winner;
+    }
+
+  
+
+    function payOut() internal {      
+        WETH.transferFrom(
+                 s_owner,
+                 maintenance,
+                 this.wethBalance() / 5 
+            );
+
+        if(winner <= nftSold){
+            
+            WETH.transferFrom(
+                 s_owner,
+                 this.ownerOf(winner),
+                 this.wethBalance() / 5 * 4
+            );
+        } else{
+            WETH.transferFrom(
+                s_owner,
+                address(this),
+                this.wethBalance() / 5 * 4
+            );
+        }
+
+        lotteryHistory[lotteryId] = this.ownerOf(winner);
+        lotteryId++;
     }
 }

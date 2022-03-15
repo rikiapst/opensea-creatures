@@ -375,6 +375,38 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "lotteryHistory",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lotteryId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "_to",
 						"type": "address"
@@ -453,7 +485,7 @@
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -914,11 +946,11 @@
 			]
 		},
 		"contracts/Creature.sol": {
-			"keccak256": "0xe1b1460ed3835369f93f65081994ae75ed8a8490567524c4eccfc6a0d03fe1fc",
+			"keccak256": "0x6360a5c12b2a2ef0bebafa9b8b2febfe1fa53746d9db150d0d06b6f4015a9370",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://934c887b10e4c2c296f70dd37771228ab182c92868fc6935e0e40b0f279425ee",
-				"dweb:/ipfs/QmTcFLnqkccwVFUxnJiGjVxPs2aFSPBiyKSX2qgfvzJzec"
+				"bzz-raw://e62c443fe9524a7f9d4e3db6ee8a6bcaebd90b3049ebe8f6a1fe48804ca32367",
+				"dweb:/ipfs/QmXfdrgzMLTARqeKwa9Uy2XdbhYBj36bFpwnAzZFEv2sHb"
 			]
 		},
 		"contracts/ERC721Tradable.sol": {

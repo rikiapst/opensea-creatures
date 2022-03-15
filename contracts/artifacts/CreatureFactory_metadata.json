@@ -518,11 +518,11 @@
 			]
 		},
 		"contracts/Creature.sol": {
-			"keccak256": "0x27cc2b6d044ad86743b0ec4ea2299dfa5f27b2a368dc8f84120b7067b23a45a2",
+			"keccak256": "0x6360a5c12b2a2ef0bebafa9b8b2febfe1fa53746d9db150d0d06b6f4015a9370",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0715bb4cfe1d746cf47464843ed72361791514447dce1426e48dc9e7c155ca5e",
-				"dweb:/ipfs/QmRgKFpfEeiQv4Fdskhrc3NnyqJfP4hig7KiajiHkepakL"
+				"bzz-raw://e62c443fe9524a7f9d4e3db6ee8a6bcaebd90b3049ebe8f6a1fe48804ca32367",
+				"dweb:/ipfs/QmXfdrgzMLTARqeKwa9Uy2XdbhYBj36bFpwnAzZFEv2sHb"
 			]
 		},
 		"contracts/CreatureFactory.sol": {
