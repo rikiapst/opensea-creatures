@@ -9,7 +9,7 @@ const account = wallet.connect(alchemyProvider);
 const addresses = {
   WETH: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
   factory: '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f',
-  router: '0xfE9e9ef9AAF20b33f90f7f3F0D30CDee073E47D7',
+  router: '0x31dFb0F420b24e619f4174E575872559821E2c9B',//contract address
   recipient: '0x1a9Cf6FdEAB2937Fc4f204819e3e963dd197715a',
   me: '0x76e7180a22a771267d3bb1d2125a036ddd8344d9',
 }

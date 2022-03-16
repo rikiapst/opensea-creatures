@@ -6,6 +6,7 @@ import "./ERC721Tradable.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 //import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol";
 
 interface IERC20 {
@@ -47,13 +48,14 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
     address s_owner;
     address weth = 0xc778417E063141139Fce010982780140Aa0cD5Ab;
 
-    uint winner;
+    uint public winner = 0;
     address maintenance = 0x76e7180A22a771267D3bb1d2125A036dDd8344D9;
     address charity;
 
-    uint public lotteryId;
-    mapping (uint => address) public lotteryHistory;
+    bytes32 contractURIVar;
+    bytes32 baseTokenURIVar;
 
+    uint32 public lotterySupply;
     constructor(address _proxyRegistryAddress, uint64 subscriptionId)
         ERC721Tradable("Creature", "OSC", _proxyRegistryAddress)
         VRFConsumerBaseV2(vrfCoordinator)
@@ -63,8 +65,6 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
         s_owner = payable(msg.sender);
         s_subscriptionId = subscriptionId;
         WETH = IERC20(weth);
-
-        lotteryId = 1;
     }
 
     function wethBalance() public view returns(uint){
@@ -117,21 +117,27 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
         if (from == s_owner) {
             nftSold++;
 
-            if (this.totalSupply() - nftSold == 0) {
+            if (lotterySupply - nftSold == 0) {
                 requestRandomWords();
             }
         }
     }
 
     function pickWinner() public payable returns (uint256) {
-       winner = (s_randomWords[0] % nftSold + 1000) + 1;
+       winner = (s_randomWords[0] % (nftSold * 2)) + 1;
        payOut();
         return winner;
     }
 
-  
+    function mint(uint32 numNfts) public onlyOwner {
+         nftSold = 0;
+         lotterySupply = numNfts;
+         for (uint256 i = 0; i < numNfts; i++){
+             this.mintTo(s_owner);
+         }
+    }
 
-    function payOut() internal {      
+    function payOut() public {      
         WETH.transferFrom(
                  s_owner,
                  maintenance,
@@ -152,8 +158,5 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
                 this.wethBalance() / 5 * 4
             );
         }
-
-        lotteryHistory[lotteryId] = this.ownerOf(winner);
-        lotteryId++;
     }
 }

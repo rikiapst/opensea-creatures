@@ -373,35 +373,29 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "lotteryHistory",
+				"inputs": [],
+				"name": "lotterySupply",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "uint32",
 						"name": "",
-						"type": "address"
+						"type": "uint32"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "lotteryId",
-				"outputs": [
+				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
+						"internalType": "uint32",
+						"name": "numNfts",
+						"type": "uint32"
 					}
 				],
-				"stateMutability": "view",
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -473,6 +467,13 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "payOut",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -739,6 +740,19 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "winner",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -946,11 +960,11 @@
 			]
 		},
 		"contracts/Creature.sol": {
-			"keccak256": "0x6360a5c12b2a2ef0bebafa9b8b2febfe1fa53746d9db150d0d06b6f4015a9370",
+			"keccak256": "0xc7c31cec295c00377e087b130d502f53abafbadfd702982e047de342035b5b54",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e62c443fe9524a7f9d4e3db6ee8a6bcaebd90b3049ebe8f6a1fe48804ca32367",
-				"dweb:/ipfs/QmXfdrgzMLTARqeKwa9Uy2XdbhYBj36bFpwnAzZFEv2sHb"
+				"bzz-raw://ef9791b6af7daa77ea4095ceeed5ddf7db7be74de276923abe9832c9d6ce7b35",
+				"dweb:/ipfs/QmdqTKRdg7J3jCymknrwdtWnz8A4RmsVabQyb9LUwcKDVM"
 			]
 		},
 		"contracts/ERC721Tradable.sol": {
