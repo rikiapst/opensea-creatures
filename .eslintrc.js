@@ -12,3 +12,4 @@ module.exports = {
     ecmaVersion: 2018,
   },
 };
+

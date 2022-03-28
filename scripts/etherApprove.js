@@ -8,10 +8,8 @@ const account = wallet.connect(alchemyProvider);
 
 const addresses = {
   WETH: '0xc778417E063141139Fce010982780140Aa0cD5Ab',
-  factory: '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f',
-  router: '0x31dFb0F420b24e619f4174E575872559821E2c9B',//contract address
-  recipient: '0x1a9Cf6FdEAB2937Fc4f204819e3e963dd197715a',
-  me: '0x76e7180a22a771267d3bb1d2125a036ddd8344d9',
+  nftContract: '0x28911A9C3E3986cB66dd00EA70e7c58F426E2D47',//contract address
+  lotteryAccount: '0x1a9Cf6FdEAB2937Fc4f204819e3e963dd197715a'
 }
 
 async function set_allowance_ether(account, token, amount, addresses) {
@@ -22,14 +20,13 @@ async function set_allowance_ether(account, token, amount, addresses) {
       'function allowance(address owner, address spender) external view returns (uint)'],
     account
   );
-  const tx = await weth.approve(addresses.router, etherAmount);
+  const tx = await weth.approve(addresses.nftContract, etherAmount);
   const receipt = await tx.wait();
   console.log(`approval receipt ${receipt}`)
-  const amountApproved = await weth.allowance(addresses.recipient, addresses.router);
+  const amountApproved = await weth.allowance(addresses.lotteryAccount, addresses.nftContract);
   console.log(`amount approved ${amountApproved.toString()}`);
   return amountApproved;
 }
 
-
-
+// need to find best way to set max allowance
 set_allowance_ether(account, addresses.WETH, 10000000000000000000, addresses);

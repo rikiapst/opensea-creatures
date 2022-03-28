@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.13+commit.abaa5c0e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -202,7 +202,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Creature.sol": "IERC20"
+			"contracts/Lottery.sol": "IERC20"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -336,20 +336,20 @@
 				"dweb:/ipfs/QmWM92rU59t6BcZSj4w6ikoPL32R9hyTMb9Msg5X8vvu1s"
 			]
 		},
-		"contracts/Creature.sol": {
-			"keccak256": "0xc7c31cec295c00377e087b130d502f53abafbadfd702982e047de342035b5b54",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://ef9791b6af7daa77ea4095ceeed5ddf7db7be74de276923abe9832c9d6ce7b35",
-				"dweb:/ipfs/QmdqTKRdg7J3jCymknrwdtWnz8A4RmsVabQyb9LUwcKDVM"
-			]
-		},
 		"contracts/ERC721Tradable.sol": {
 			"keccak256": "0x0ea2ead87b75966a8b6b2d3924a361d466c928d6ecce761dc6744a7f02842add",
 			"license": "MIT",
 			"urls": [
 				"bzz-raw://5edaa345c97bbde975636ec261114138acd87086baf600ec3a8177b0536f7de6",
 				"dweb:/ipfs/QmfMXgheriyvxrLzyNjQr1LnWk634rtYdq5MxNGCzABMiQ"
+			]
+		},
+		"contracts/Lottery.sol": {
+			"keccak256": "0xd4b1aee0ae1b1d6bd2067df92fab50b200272427883b59d27f41226b739bc413",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://77c7e4d2097c9a8adafebc89110cdb50d9c4e7e4613812c5a7b47adec172c049",
+				"dweb:/ipfs/QmQAZY44i49jCaTkH2cs2op5oXZrMoiL54FjjmEvXxWdo6"
 			]
 		},
 		"contracts/common/meta-transactions/ContentMixin.sol": {

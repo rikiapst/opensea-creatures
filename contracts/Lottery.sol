@@ -7,7 +7,6 @@ import "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-//import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol";
 
 interface IERC20 {
     function totalSupply() external view returns (uint256);   
@@ -25,10 +24,11 @@ interface IERC20 {
 }
 
 /**
- * @title Creature
- * Creature - a contract for my non-fungible creatures.
+ * @title Lottery
+ * Lottery - a contract for my non-fungible Lotterys.
+ proxyRegistryAddress = "0xf57b2c51ded3a29e6891aba85459d600256cf317";
  */
-contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
+contract Lottery is ERC721Tradable, VRFConsumerBaseV2 {
     VRFCoordinatorV2Interface COORDINATOR;
     LinkTokenInterface LINKTOKEN;
     IERC20 WETH;
@@ -48,10 +48,10 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
     address s_owner;
     address weth = 0xc778417E063141139Fce010982780140Aa0cD5Ab;
 
-    uint256 public winner; //changed assign
+    uint256 winner; //changed assign
     uint256 public lotterytStart = 0;
     address maintenance = 0x76e7180A22a771267D3bb1d2125A036dDd8344D9;
-    address charity;
+    address public charity = 0x76e7180A22a771267D3bb1d2125A036dDd8344D9;
 
     bytes32 contractURIVar;
     bytes32 baseTokenURIVar;
@@ -62,14 +62,14 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
 
     bool lotteryOpen;
 
-    constructor(address _proxyRegistryAddress, uint64 subscriptionId)
-        ERC721Tradable("Creature", "OSC", _proxyRegistryAddress)
+    constructor(address _proxyRegistryAddress, uint64 _s_subscriptionId)
+        ERC721Tradable("Lottery", "OSC", _proxyRegistryAddress)
         VRFConsumerBaseV2(vrfCoordinator)
     {
         COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
         LINKTOKEN = LinkTokenInterface(link);
-        s_owner = payable(msg.sender);
-        s_subscriptionId = subscriptionId;
+        s_owner = msg.sender;
+        s_subscriptionId = _s_subscriptionId;
         WETH = IERC20(weth);
     }
 
@@ -85,8 +85,8 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
         return "http://18.208.216.46/contract";
     }
     
-    function setSubId(uint64 subIdArg) public onlyOwner {
-        s_subscriptionId = subIdArg;
+    function setSubId(uint64 _s_subscriptionId) public onlyOwner {
+        s_subscriptionId = _s_subscriptionId;
     }
 
     function requestRandomWords() public {
@@ -138,7 +138,7 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
     ) internal override {
         s_randomWords = randomWords;    
         pickWinner();
-        emit Winner(requestId, randomWords[0], winner);
+        emit Winner(requestId, randomWords[0], winner + lotterytStart);
     }
 
 
@@ -149,24 +149,20 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
 
 //PROXY ADDRESS 0xf57b2c51ded3a29e6891aba85459d600256cf317
 
-  function setLotteryOpenTrue() public  {
-       lotteryOpen = true;
-   }
-
-   function setLotteryOpenFalse() public  {
-        lotteryOpen = false;
-   }
-
    function getLotteryOpen() public view returns(bool){
        return lotteryOpen;
    }
 
-   function pickWinner() public  {
+   function pickWinner() internal  {
         winner = (s_randomWords[0] % (nftSold * 2)) + 1;
    }
 
 
-   function payOut() public  onlyOwner {
+   function setCharity(address _charity) public onlyOwner {
+       charity = _charity;
+   }
+
+   function payOut() public onlyOwner {
         WETH.transferFrom(
             s_owner,
             maintenance,
@@ -183,7 +179,7 @@ contract Creature is ERC721Tradable, VRFConsumerBaseV2 {
         else{
             WETH.transferFrom(
                 s_owner,
-                maintenance,
+                charity,
                 this.wethBalance()
             );
         }

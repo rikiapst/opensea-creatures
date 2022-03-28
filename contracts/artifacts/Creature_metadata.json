@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.13+commit.abaa5c0e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -157,6 +157,56 @@
 				"type": "event"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_from",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "TransferFrom",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_requestId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_randomWords",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_winner",
+						"type": "uint256"
+					}
+				],
+				"name": "Winner",
+				"type": "event"
+			},
+			{
 				"inputs": [],
 				"name": "ERC712_VERSION",
 				"outputs": [
@@ -292,19 +342,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "getBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "getChainId",
 				"outputs": [
 					{
@@ -330,6 +367,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "getLotteryOpen",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -342,6 +392,19 @@
 					{
 						"internalType": "uint256",
 						"name": "nonce",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getWinner",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -380,6 +443,19 @@
 						"internalType": "uint32",
 						"name": "",
 						"type": "uint32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lotterytStart",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -477,19 +553,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "pickWinner",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -516,15 +579,9 @@
 			},
 			{
 				"inputs": [],
-				"name": "returnOne",
-				"outputs": [
-					{
-						"internalType": "uint8",
-						"name": "",
-						"type": "uint8"
-					}
-				],
-				"stateMutability": "pure",
+				"name": "requestRandomWords",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -624,6 +681,19 @@
 					}
 				],
 				"name": "setApprovalForAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "subIdArg",
+						"type": "uint64"
+					}
+				],
+				"name": "setSubId",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -740,19 +810,6 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "winner",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -810,7 +867,7 @@
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
 			},
-			"title": "Creature Creature - a contract for my non-fungible creatures.",
+			"title": "Creature Creature - a contract for my non-fungible creatures. proxyRegistryAddress = \"0xf57b2c51ded3a29e6891aba85459d600256cf317\";",
 			"version": 1
 		},
 		"userdoc": {
@@ -825,7 +882,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Creature.sol": "Creature"
+			"contracts/Lottery.sol": "Creature"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -959,20 +1016,20 @@
 				"dweb:/ipfs/QmWM92rU59t6BcZSj4w6ikoPL32R9hyTMb9Msg5X8vvu1s"
 			]
 		},
-		"contracts/Creature.sol": {
-			"keccak256": "0xc7c31cec295c00377e087b130d502f53abafbadfd702982e047de342035b5b54",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://ef9791b6af7daa77ea4095ceeed5ddf7db7be74de276923abe9832c9d6ce7b35",
-				"dweb:/ipfs/QmdqTKRdg7J3jCymknrwdtWnz8A4RmsVabQyb9LUwcKDVM"
-			]
-		},
 		"contracts/ERC721Tradable.sol": {
 			"keccak256": "0x0ea2ead87b75966a8b6b2d3924a361d466c928d6ecce761dc6744a7f02842add",
 			"license": "MIT",
 			"urls": [
 				"bzz-raw://5edaa345c97bbde975636ec261114138acd87086baf600ec3a8177b0536f7de6",
 				"dweb:/ipfs/QmfMXgheriyvxrLzyNjQr1LnWk634rtYdq5MxNGCzABMiQ"
+			]
+		},
+		"contracts/Lottery.sol": {
+			"keccak256": "0x344936949159e1a3993cf5e66dd97a8a540fca16ae2b19aec8320070be90d07d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ac6c9a093570b180178874f70ba02bbf519a7b4cea1f9d92003490b048b52813",
+				"dweb:/ipfs/QmXfWiAmBgHVMhEF2vxkpj3xZC1YBeePRzC3zAJTNPTTVk"
 			]
 		},
 		"contracts/common/meta-transactions/ContentMixin.sol": {
